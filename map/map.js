@@ -21,17 +21,15 @@ function initMap() {
 
   infoWindow = new google.maps.InfoWindow();
   const nearButton = document.querySelector('.location-btn');
-  // const postalButton = document.querySelector('.postal');
 
   //search stations by postal code
   let form = document.body.querySelector('.searchBar');
   form.addEventListener('submit', () => {
     let postal = form.elements['search'].value;
-    
-    let fourDigits = /^\d{4}$/;
 
+    let fourDigits = /^\d{4}$/;
     if (fourDigits.test(postal) == false) {
-      form.elements[0].value = '';
+      
       return;
     }
     mapDiv = document.querySelector('#map');
