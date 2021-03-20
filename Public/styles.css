@@ -14,10 +14,10 @@
     font-style: normal;
 }
 
-img {
-  width: 13%;
+.logo {
+  width: 20%;
   padding: 1.4em;
-  transform: translate(618%);
+  float: right;
 }
 
 h1 {
@@ -67,7 +67,6 @@ form.searchBar input[type=text] {
     background: #da120b;
   }
 
-  
   form.searchBar .location-btn {
     border-left: 1px solid grey;
     border-right: none;
@@ -117,5 +116,6 @@ form.searchBar input[type=text] {
   .center {
     text-align: center;
   }
+
 
  
