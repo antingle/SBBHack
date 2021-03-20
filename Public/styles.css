@@ -75,19 +75,16 @@ form.searchBar input[type=text] {
     display: flex;
     justify-content: left;
     align-items: center;
-    
   }
 
   .card {
       position: relative; 
       top: -20px;
-      width: 20em;
+      width: 32em;
       padding-left: 13.5%;
-      padding-bottom: 3em;
+      padding-bottom: 4%;
+      padding-top: 6%;
       display:inline-block;
-      border:  solid grey 1px;
-      
-      
   }
 
   .card-text {
