@@ -116,7 +116,7 @@ function findStationsNear(pos) {
           map: map,
           animation: google.maps.Animation.DROP,
           icon: {
-            url: '/map/parking.png',
+            url: 'parking.png',
             scaledSize: new google.maps.Size(32,32)
           },
           title: result.records[i].fields.bezeichnung_offiziell
