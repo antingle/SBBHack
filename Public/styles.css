@@ -21,6 +21,14 @@ h1 {
     padding-top: 2em;
 }
 
+.text {
+  font-family: 'sbbthin';
+  font-size: 1.5em;
+  text-align: center;
+  width: 32em;
+  margin: auto;
+}
+
 form.searchBar input[type=text] {
     padding: 10px;
     font-size: 17px;
@@ -63,13 +71,11 @@ form.searchBar input[type=text] {
       color:lightgrey;
   }
 
-  .text {
-    font-family: 'sbbthin';
-    font-size: 1.5em;
-    text-align: center;
-    width: 32em;
-    margin: auto;
-}
+  .card-deck {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
 
   .card {
       position: relative; top: -20px;
