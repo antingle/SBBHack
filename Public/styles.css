@@ -13,15 +13,6 @@ h1 {
     padding-top: 2em;
 }
 
-.text {
-    font-family: 'sbbthin';
-    font-size: 1.5em;
-    text-align: left;
-    padding-top: 2em;
-    padding-left: 55px;
-    width: 32em;
-}
-
 form.searchBar input[type=text] {
     padding: 10px;
     font-size: 17px;
@@ -51,14 +42,33 @@ form.searchBar input[type=text] {
     display: table;
   }
 
+  #currentlocation {
+      padding-left: 27em;
+      color: red;
+      font-size:large;
+      padding-top: 1.2em;
+  }
+
   hr {
       margin: 3.5em;
       color:lightgrey;
   }
 
+  .text {
+    font-family: 'sbbthin';
+    font-size: 1.5em;
+    text-align: left;
+    padding-top: 2em;
+    padding-left: 55px;
+    width: 32em;
+    display:inline-block;
+}
+
   .card {
+      marginTop: '-=15px'
       width: 15em;
       padding-left: 55px;
+      padding-bottom: 4em;
       display:inline-block;
   }
 
