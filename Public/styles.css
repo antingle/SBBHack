@@ -146,6 +146,8 @@ form.searchBar input[type=text] {
     visibility: visible;
   }
 
+  
+
   #errorDiv {
     text-align: center;
     color: red;
