@@ -132,7 +132,7 @@ function findStationsNear(pos) {
         let destination = coords[1] + ',' + coords[0];
         var infowindow = new google.maps.InfoWindow({
           content:  `
-          <h2>${result.records[i].fields.abkuerzung} &nbsp; ${result.records[i].fields.bezeichnung_offiziell}</h2>
+          <h2>${result.records[i].fields.abkuerzung} - ${result.records[i].fields.bezeichnung_offiziell}</h2>
           `
         });;
 
@@ -156,8 +156,8 @@ function findStationsNear(pos) {
           .then(result2 => {
             infowindow = new google.maps.InfoWindow({
               content:  `
-              <h2>${result.records[i].fields.abkuerzung} &nbsp; ${result.records[i].fields.bezeichnung_offiziell}</h2>
-              <p><a href = "https://maps.google.com/?ll=${destination}" >${result2.destination_addresses[0]}</a></p>
+              <h2>${result.records[i].fields.abkuerzung} - ${result.records[i].fields.bezeichnung_offiziell}</h2>
+              <p><a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a></p>
               <p>Entfernung: <b>${result2.rows[0].elements[0].distance.text}</b></p>
               <p>Geschätzte Zeit: <b>${result2.rows[0].elements[0].duration.text}</b></p>
               `
@@ -172,11 +172,11 @@ function findStationsNear(pos) {
       });
       }
       //set card texts
-      let card = document.body.querySelectorAll('.parking-card-deck .parking-card h2');
+      let card = document.body.querySelectorAll('.parking-card');
       for (let i = 0, j = 0; i < card.length; i++, j++) {
         console.log(result.records[j].fields.bezeichnung_offiziell);
         while (result.records[j].fields.bezeichnung_offiziell == result.records[j+1].fields.bezeichnung_offiziell) j++;
-        card[i].innerHTML = `${result.records[j].fields.abkuerzung} &nbsp; ${result.records[j].fields.bezeichnung_offiziell}`;
+        card[i].childNodes[1].textContent = `${result.records[j].fields.abkuerzung} - ${result.records[j].fields.bezeichnung_offiziell}`;
       }
     })
     .catch(error => console.log('error', error));
