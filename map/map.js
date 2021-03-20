@@ -29,7 +29,11 @@ function initMap() {
 
     let fourDigits = /^\d{4}$/;
     if (fourDigits.test(postal) == false) {
-      
+      let errorDiv = document.createElement('div');
+      errorDiv.className = ('errorDiv');
+      errorDiv.innerHTML = "Incorrect Postal Code";
+      document.body.insertBefore(errorDiv, form.parentNode);
+
       return;
     }
     mapDiv = document.querySelector('#map');
