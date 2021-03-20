@@ -19,6 +19,11 @@ h1 {
     text-align: left;
     padding-top: 2em;
     padding-left: 55px;
+    width: 32em;
+}
+
+form.searchbar {
+    font-size: 0;
 }
 
 form.searchBar input[type=text] {
@@ -27,6 +32,7 @@ form.searchBar input[type=text] {
     border: 1px solid grey;
     width: 30%;
     background: #f1f1f1;
+    font-size: 0;
   }
   
   form.searchBar button {
@@ -52,12 +58,13 @@ form.searchBar input[type=text] {
 
   hr {
       margin: 3.5em;
+      color:lightgrey;
   }
 
   .card {
       width: 15em;
       padding-left: 55px;
-      display:inline-block
+      display:inline-block;
   }
 
   .card a {
