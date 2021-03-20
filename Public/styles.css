@@ -86,29 +86,29 @@ form.searchBar input[type=text] {
 
   form.searchBar .location-btn .tooltiptext {
     visibility: hidden;
-  width: 120px;
-  font-family: 'sbbroman';
-  border: 1px solid grey;
-  color: black;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 1;
-  width: 120px;
-  top: 19.8em;
-  margin-left: -3.2em;
+    width: 120px;
+    font-family: 'sbbroman';
+    border: 1px solid grey;
+    color: black;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    top: 19.8em;
+    margin-left: -3.2em;
   }
 
   form.searchBar .location-btn .tooltiptext::after {
-  content: " ";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent transparent;
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
   }
 
   form.searchBar .location-btn:hover .tooltiptext {
