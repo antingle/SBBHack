@@ -29,12 +29,18 @@ function initMap() {
 
     let fourDigits = /^\d{4}$/;
     if (fourDigits.test(postal) == false) {
-      let errorDiv = document.createElement('div');
-      errorDiv.className = ('errorDiv');
-      errorDiv.innerHTML = "Incorrect Postal Code";
-      document.body.insertBefore(errorDiv, form.parentNode);
-
+      if (document.getElementById('errorDiv') == null) {
+        let errorDiv = document.createElement('div');
+        errorDiv.id = ('errorDiv');
+        errorDiv.innerHTML = "Incorrect Postal Code";
+        document.body.insertBefore(errorDiv, form.parentNode);
+      }
       return;
+    } else {
+      let errorDiv = document.getElementById('errorDiv');
+      if (errorDiv) {
+      errorDiv.remove();
+      }
     }
     mapDiv = document.querySelector('#map');
     mapDiv.scrollIntoView( { behavior: "smooth" } );
@@ -47,7 +53,6 @@ function initMap() {
       let longitude = parseFloat(temp[0].longitude);
       pos = { lat: latitude, lng: longitude };
       map.setCenter(pos);
-      console.log(pos);
       findStationsNear(pos);
     });
   });
@@ -66,7 +71,7 @@ function initMap() {
             lng: position.coords.longitude,
           };
           infoWindow.setPosition(pos);
-          let marker = new google.maps.Marker({
+          new google.maps.Marker({
             position: pos,
             map: map,
             title: 'Your position'
@@ -84,6 +89,18 @@ function initMap() {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   });
+  function setMapOnAll(map) {
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
+  function clearMarkers() {
+    setMapOnAll(null);
+  }
+  function deleteMarkers() {
+    clearMarkers();
+    markers = [];
+  }
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -99,7 +116,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //find stations based on geodistance query
 function findStationsNear(pos) {
   let lat = pos.lat;
-  console.log(lat);
   let lng = pos.lng;
   fetch(`https://data.sbb.ch/api/records/1.0/search/?dataset=mobilitat&q=&rows=1000&facet=stationsbezeichnung&geofilter.distance=${lat}%2C${lng}%2C${meters}`, requestOptions)
     .then(response => response.json())
@@ -119,8 +135,13 @@ function findStationsNear(pos) {
             url: 'parking.png',
             scaledSize: new google.maps.Size(32,32)
           },
-          title: result.records[i].fields.bezeichnung_offiziell
+          title: 
+          `
+          <h1>${result.records[i].fields.abkuerzung}</h1>
+          <h1>${result.records[i].fields.bezeichnung_offiziell}</h1>
+          `
         });
+        console.log(marker.title)
         marker.addListener("click", () => {
           infowindow.open(map, marker);
         });
