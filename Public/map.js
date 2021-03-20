@@ -13,6 +13,7 @@ var requestOptions = {
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
 let map, infoWindow;
+let markers = [];
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -22,11 +23,21 @@ function initMap() {
 
   infoWindow = new google.maps.InfoWindow();
   const nearButton = document.querySelector('.location-btn');
+  const radiusButtons = document.querySelectorAll('.dropdown-menu li a');
 
+  for (let i = 0; i < radiusButtons.length; i++) {
+    radiusButtons[i].addEventListener("click", () => {
+      let km = radiusButtons[i].textContent.match(/\d+/)[0];
+      meters = km * 1000;
+      document.querySelector('.radius-btn').textContent = `Radius (${km} km)`
+    });
+  }
+  
   //search stations by postal code
   let form = document.body.querySelector('.searchBar');
   form.addEventListener('submit', () => {
     let postal = form.elements['search'].value;
+    deleteMarkers();
 
     let fourDigits = /^\d{4}$/;
     if (fourDigits.test(postal) == false) {
@@ -54,7 +65,7 @@ function initMap() {
       let longitude = parseFloat(temp[0].longitude);
       pos = { lat: latitude, lng: longitude };
       map.setCenter(pos);
-      map.setZoom(12);
+      map.setZoom(14 - meters/20000);
       findStationsNear(pos);
     });
   });
@@ -73,14 +84,14 @@ function initMap() {
             lng: position.coords.longitude,
           };
           infoWindow.setPosition(pos);
-          new google.maps.Marker({
+          let marker = new google.maps.Marker({
             position: pos,
             map: map,
             title: 'Your position'
         });
-          // infoWindow.open(map);
+          markers.push(marker); 
           map.setCenter(pos);
-          map.setZoom(12);
+          map.setZoom(13);
           findStationsNear(pos);
         },
         () => {
@@ -147,6 +158,7 @@ function findStationsNear(pos) {
           },
           title: result.records[i].fields.abkuerzung
         });
+        markers.push(marker);
 
         //adds address and eta to marker window
         marker.addListener("click", () => {
