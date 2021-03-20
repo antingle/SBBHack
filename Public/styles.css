@@ -79,9 +79,9 @@ form.searchBar input[type=text] {
 
   .card {
       position: relative; top: -20px;
-      width: 15em;
-      padding-left: 19em;
-      padding-bottom: 4em;
+      width: 20em;
+      padding-left: 10%;
+      padding-bottom: 3em;
       display:inline-block;
   }
 
