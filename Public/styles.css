@@ -31,14 +31,15 @@ h1 {
   padding: .5em;
 }
 
-.menu-area {
-  list-style: none;
+.dropdown {
+  position: relative;
+  top: -6px;
+  
 }
 
-.menu-area {
-  display: inline-block;
-  text-align: center;
-  margin: auto;
+.btn {
+  border-right: none;
+  border-radius: 0px;
 }
 
 form.searchBar input[type=text] {
@@ -70,6 +71,7 @@ form.searchBar input[type=text] {
   form.searchBar .location-btn {
     border-left: 1px solid grey;
     border-right: none;
+    border-left: none;
     width: 50px;
   }
 
@@ -88,13 +90,13 @@ form.searchBar input[type=text] {
     margin: auto;
   }
 
-  .card-deck {
+  .parking-card-deck {
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
   }
 
-  .card {
+  .parking-card {
     position: relative;
     top: -1em;
     width: 26em;
@@ -103,11 +105,11 @@ form.searchBar input[type=text] {
     padding-top: 6%;
   }
 
-  .card-text {
+  .parking-card-text {
     font-family: 'sbbroman';
   }
 
-  .card a {
+  .parking-card a {
     color: red;
   }
 
