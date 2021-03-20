@@ -15,8 +15,10 @@
 }
 
 .logo {
-  width: 20%;
+  width: 15.5em;
+  height: auto;
   padding: 1.4em;
+  margin-right: 140px;
   float: right;
 }
 
@@ -25,11 +27,12 @@ h1 {
     text-align: center;
     padding: 1em;
     padding-top: 2em;
-    color: black;
+    font-weight: 575;
 }
 
 .text {
   font-family: 'sbbthin';
+  font-weight: 575;
   font-size: 1.5em;
   text-align: center;
   max-width: 32em;
@@ -37,9 +40,14 @@ h1 {
   padding: .5em;
 }
 
-.btn {
+.dropdown {
+  margin: 0px;
+}
+
+.radius-btn {
   border-right: none;
   border-radius: 0px;
+  font-family: 'sbbroman';
 }
 
 form.searchBar input[type=text] {
@@ -50,6 +58,7 @@ form.searchBar input[type=text] {
     background: #f1f1f1;
     margin-top: 2em;
     margin-bottom: 1em;;
+    font-family: 'sbbroman';
   }
   
   form.searchBar button {
@@ -61,6 +70,7 @@ form.searchBar input[type=text] {
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
+    font-family: 'sbbroman';
   }
   
   form.searchBar button:hover {
@@ -72,6 +82,18 @@ form.searchBar input[type=text] {
     border-right: none;
     border-left: none;
     width: 50px;
+  }
+
+  form.searchBar .location-btn .tooltiptext {
+    visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
   }
 
   #errorDiv {
@@ -103,6 +125,8 @@ form.searchBar input[type=text] {
     padding-left: 13.5%;
     padding-bottom: 4%;
     padding-top: 6%;
+    font-family: 'sbbthin';
+    font-weight: 575;
   }
 
   .parking-card-text {
@@ -111,6 +135,7 @@ form.searchBar input[type=text] {
 
   .parking-card a {
     color: red;
+    font-family: 'sbbroman';
   }
 
   .center {

@@ -16,9 +16,9 @@
   </head>
   <body>
 
-    <div class='logo'>
-      <img src="images/SBB_POS_2F_RGB_100.png" alt="SBB Logo">
-    </div>
+    
+      <img class="logo" src="images/SBB_POS_2F_RGB_100.png" alt="SBB Logo">
+    
   
       <h1>Parking Availability.</h1>
 
@@ -27,12 +27,14 @@
           but now you do not have to worry about that anymore. <br> <br>
           With our new polynomial regression, you can see the availability of a parking spot within a current time. </p>
       </div>
+
+      
     
       
     <div class="center">      
     <form class="searchBar" action="javascript:void(0);" style="font-size: 0;">
       <span class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="radius-btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Radius
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -43,7 +45,7 @@
           <li><a class="dropdown-item" href="#">50km</a></li>
         </ul>
       </span>
-      <button type="button" class="location-btn"><i class="fa fa-location-arrow"></i></button>
+      <button type="button" class="location-btn"><span class="tooltiptext">Use current location</span><i class="fa fa-location-arrow"></i></button>
       <input type="text" id="postal" placeholder="Postal Code" name="search">
       <button type="submit"><i class="fa fa-search fa-fw"></i>Search Parking</button>
     </div>
