@@ -9,7 +9,7 @@
 h1 {
     font-family: 'sbbthin';
     text-align: center;
-    padding: 110px;
+    padding: 1em;
 }
 
 form.searchBar input[type=text] {
