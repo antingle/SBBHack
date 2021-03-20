@@ -1,5 +1,11 @@
 const apikey = 'AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo';
+const zipkey = 'f51cb250-8940-11eb-a563-317fa7c2b6b2';
 var meters = 20000;
+
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
 
 // Note: This example requires that you consent to location sharing when
 // prompted by your browser. If you see the error "The Geolocation service
@@ -12,18 +18,29 @@ function initMap() {
     center: { lat: 47.5474120551, lng: 7.58956279016 },
     zoom: 12,
   });
+
   infoWindow = new google.maps.InfoWindow();
-  const locationButton = document.createElement("button");
   const nearButton = document.querySelector('.nearMe');
-  locationButton.textContent = "My Current Location";
-  locationButton.classList.add("custom-map-control-button");
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  nearButton.addEventListener("click", () => {
-    let pos = { lat: 47.5474120551, lng: 7.58956279016 };
-    map.setCenter(pos);
-    findStationsNear(pos);
+  const postalButton = document.querySelector('.postal');
+
+  //search stations by postal code
+  postalButton.addEventListener("click", () => {
+    let pos, postal=1200;
+    fetch(`https://app.zipcodebase.com/api/v1/search?apikey=f51cb250-8940-11eb-a563-317fa7c2b6b2&codes=${postal}&country=CH`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      let temp = result.results[postal];
+      let latitude = parseFloat(temp[0].latitude);
+      let longitude = parseFloat(temp[0].longitude);
+      pos = { lat: latitude, lng: longitude };
+      map.setCenter(pos);
+      console.log(pos);
+      findStationsNear(pos);
+    });
   });
-  locationButton.addEventListener("click", () => {
+
+  //search stations by current location
+  nearButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -63,13 +80,12 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
+//find stations based on geodistance query
 function findStationsNear(pos) {
-  var requestOptions = {
-    method: 'GET',
-    redirect: 'follow'
-  };
-  
-  fetch(`https://data.sbb.ch/api/records/1.0/search/?dataset=mobilitat&q=&rows=1000&facet=stationsbezeichnung&geofilter.distance=47.5474120551%2C7.58956279016%2C${meters}`, requestOptions)
+  let lat = pos.lat;
+  console.log(lat);
+  let lng = pos.lng;
+  fetch(`https://data.sbb.ch/api/records/1.0/search/?dataset=mobilitat&q=&rows=1000&facet=stationsbezeichnung&geofilter.distance=${lat}%2C${lng}%2C${meters}`, requestOptions)
     .then(response => response.json())
     .then(result => {
       console.log(result.records);
@@ -86,9 +102,11 @@ function findStationsNear(pos) {
           title: result.records[i].fields.bezeichnung_offiziell
         });
         marker.addListener("click", () => {
-          infoWindow.close(map);
           infowindow.open(map, marker);
         });
+        google.maps.event.addListener(map, "click", function(event) {
+          infowindow.close();
+      });
       }
     })
     .catch(error => console.log('error', error));
