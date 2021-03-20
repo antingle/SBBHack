@@ -115,6 +115,37 @@ form.searchBar input[type=text] {
     visibility: visible;
   }
 
+  .radius-btn .radiustooltiptext {
+    visibility: hidden;
+    width: 120px;
+    font-family: 'sbbroman';
+    border: 1px solid grey;
+    color: black;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    bottom: 2em;
+    margin-left: -1.57em;
+  }
+
+  .radius-btn .radiustooltiptext:after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+
+  .radius-btn:hover .radiustooltiptext {
+    visibility: visible;
+  }
+
   #errorDiv {
     text-align: center;
     color: red;
