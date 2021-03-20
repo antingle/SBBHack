@@ -27,6 +27,7 @@ form.searchBar input[type=text] {
     border: 1px solid grey;
     width: 30%;
     background: #f1f1f1;
+    margin-top: 2em;
   }
   
   form.searchBar button {
@@ -44,12 +45,17 @@ form.searchBar input[type=text] {
     background: #da120b;
   }
 
-  #currentlocation {
-      font-family: 'sbbroman';
-      padding-left: 27em;
-      color: red;
-      font-size:large;
-      padding-top: 1.2em;
+  
+  form.searchBar .location-btn {
+    border-left: 1px solid grey;
+    border-right: none;
+    width: 50px;
+  }
+
+  .errorDiv {
+    text-align: center;
+    color: red;
+    font-family: 'sbbroman';
   }
 
   hr {
@@ -60,15 +66,15 @@ form.searchBar input[type=text] {
   .text {
     font-family: 'sbbthin';
     font-size: 1.5em;
-    text-align: left;
+    text-align: center;
     width: 32em;
-    padding-left: 13em
+    margin: auto;
 }
 
   .card {
       position: relative; top: -20px;
       width: 15em;
-      padding-left: 55px;
+      padding-left: 19em;
       padding-bottom: 4em;
       display:inline-block;
   }
@@ -85,9 +91,3 @@ form.searchBar input[type=text] {
       text-align: center;
   }
 
-  form.searchBar .location-btn {
-    border-left: 1px solid grey;
-    border-right: none;
-    width: 50px;
-
-  }
