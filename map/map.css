@@ -1,6 +1,7 @@
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
+  margin: auto;
   height: 100%;
 }
 
@@ -27,4 +28,8 @@ body {
 }
 .custom-map-control-button:hover {
   background: #ebebeb;
+}
+
+.nearMe {
+  margin: 3em;
 }
