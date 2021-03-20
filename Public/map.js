@@ -163,7 +163,7 @@ function findStationsNear(pos) {
         //adds address and eta to marker window
         marker.addListener("click", () => {
 
-          fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`, requestOptions)
+          fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`, requestOptions)
           .then(response => response.json())
           .then(result2 => {
             infowindow = new google.maps.InfoWindow({
@@ -186,7 +186,6 @@ function findStationsNear(pos) {
       //set card texts
       let card = document.body.querySelectorAll('.parking-card');
       for (let i = 0, j = 0; i < card.length; i++, j++) {
-        console.log(result.records[j].fields.bezeichnung_offiziell);
         while (result.records[j].fields.bezeichnung_offiziell == result.records[j+1].fields.bezeichnung_offiziell) j++;
         card[i].childNodes[1].textContent = `${result.records[j].fields.abkuerzung} - ${result.records[j].fields.bezeichnung_offiziell}`;
       }
