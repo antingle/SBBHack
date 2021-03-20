@@ -71,6 +71,10 @@ form.searchBar input[type=text] {
       color:lightgrey;
   }
 
+  .w3-panel {
+    margin: auto;
+  }
+
   .card-deck {
     display: flex;
     justify-content: left;
