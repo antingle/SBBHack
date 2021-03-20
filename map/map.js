@@ -10,7 +10,7 @@ let map, infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 47.5474120551, lng: 7.58956279016 },
-    zoom: 10,
+    zoom: 12,
   });
   infoWindow = new google.maps.InfoWindow();
   const locationButton = document.createElement("button");
@@ -20,6 +20,7 @@ function initMap() {
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   nearButton.addEventListener("click", () => {
     let pos = { lat: 47.5474120551, lng: 7.58956279016 };
+    map.setCenter(pos);
     findStationsNear(pos);
   });
   locationButton.addEventListener("click", () => {
@@ -75,11 +76,26 @@ function findStationsNear(pos) {
       for (let i = 0; i < result.records.length; i++) {
         const coords = result.records[i].geometry.coordinates;
         const latLng = new google.maps.LatLng(coords[1], coords[0]);
-        new google.maps.Marker({
+        const infowindow = new google.maps.InfoWindow({
+          content: result.records[i].fields.bezeichnung_offiziell,
+        });
+        let marker = new google.maps.Marker({
           position: latLng,
           map: map,
+          icon: icons.parking,
+          title: result.records[i].fields.bezeichnung_offiziell
+        });
+        marker.addListener("click", () => {
+          infoWindow.close(map);
+          infowindow.open(map, marker);
         });
       }
     })
     .catch(error => console.log('error', error));
 }
+
+const iconBase =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
+  const icons = {
+    parking: iconBase + "parking_lot_maps.png"
+  };
