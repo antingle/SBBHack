@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { clearScreenDown } = require('readline');
 
 const raw_data = fs.readFileSync('./data/data.json');
 const data = JSON.parse(raw_data);
@@ -30,7 +29,7 @@ const get_hours = jsdate => {
     return time;
 }
 
-const get_training_set = (station_name, time_period) => {
+module.exports.get_training_set = (station_name, time_period) => {
     let training_data = [];
     for (let i = 0; i < data.length; i++) {
         const { fields } = data[i];
@@ -54,4 +53,11 @@ const get_training_set = (station_name, time_period) => {
     return training_values;
 }
 
-module.exports = get_training_set;
+module.exports.init_weights = (amount) => {
+    const w = [];
+    for (let i = 0; i < amount; i++) {
+        w.push(Math.random());
+    }
+    
+    return w;
+}
