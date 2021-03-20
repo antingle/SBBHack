@@ -154,11 +154,12 @@ function findStationsNear(pos) {
           fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`, requestOptions)
           .then(response => response.json())
           .then(result2 => {
-            console.log(result2.rows[0].elements[0]);
             infowindow = new google.maps.InfoWindow({
               content:  `
               <h2>${result.records[i].fields.abkuerzung} &nbsp; ${result.records[i].fields.bezeichnung_offiziell}</h2>
-              <p>${result2.destination_addresses[0]}</p>
+              <p><a href = "https://maps.google.com/?ll=${destination}" >${result2.destination_addresses[0]}</a></p>
+              <p>Entfernung: <b>${result2.rows[0].elements[0].distance.text}</b></p>
+              <p>Geschätzte Zeit: <b>${result2.rows[0].elements[0].duration.text}</b></p>
               `
             });
               infowindow.open(map, marker);
