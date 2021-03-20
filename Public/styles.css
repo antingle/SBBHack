@@ -131,6 +131,10 @@ form.searchBar input[type=text] {
     margin-bottom: 3.5em;
   }
 
+  .w3-panel:hover {
+    color: red;
+  }
+
   .parking-card-deck {
    display: flex;
    flex-wrap: wrap;
