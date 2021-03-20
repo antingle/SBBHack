@@ -31,12 +31,6 @@ h1 {
   padding: .5em;
 }
 
-.dropdown {
-  position: relative;
-  top: -6px;
-  
-}
-
 .btn {
   border-right: none;
   border-radius: 0px;
@@ -88,6 +82,7 @@ form.searchBar input[type=text] {
 
   .w3-panel {
     margin: auto;
+    margin-bottom: 3.5em;
   }
 
   .parking-card-deck {
@@ -117,3 +112,4 @@ form.searchBar input[type=text] {
     text-align: center;
   }
 
+ 
