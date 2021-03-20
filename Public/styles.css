@@ -1,0 +1,11 @@
+font-face {
+    font-family: 'sbbthin';
+    src: url('sbb-thin-webfont.woff2') format('woff2'),
+         url('sbb-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+    text-align: center
+}
