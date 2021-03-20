@@ -60,7 +60,7 @@ form.searchBar input[type=text] {
     width: 50px;
   }
 
-  .errorDiv {
+  #errorDiv {
     text-align: center;
     color: red;
     font-family: 'sbbroman';
@@ -75,6 +75,7 @@ form.searchBar input[type=text] {
     display: flex;
     justify-content: left;
     align-items: center;
+    
   }
 
   .card {
