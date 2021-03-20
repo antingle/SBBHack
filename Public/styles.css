@@ -66,6 +66,11 @@ form.searchBar input[type=text] {
     color: red;
   }
 
+  #map {
+      width: 90%;
+      margin: 50px;
+  }
+
   
 
 
