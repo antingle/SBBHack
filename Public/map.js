@@ -125,7 +125,11 @@ function findStationsNear(pos) {
         const coords = result.records[i].geometry.coordinates;
         const latLng = new google.maps.LatLng(coords[1], coords[0]);
         const infowindow = new google.maps.InfoWindow({
-          content: result.records[i].fields.bezeichnung_offiziell,
+          content:  `
+          
+          <h2>${result.records[i].fields.abkuerzung} &nbsp; ${result.records[i].fields.bezeichnung_offiziell}</h2>
+          <p>${result.records[i].fields.veloparking_status_d}</p>
+          `
         });
         let marker = new google.maps.Marker({
           position: latLng,
@@ -135,20 +139,20 @@ function findStationsNear(pos) {
             url: 'parking.png',
             scaledSize: new google.maps.Size(32,32)
           },
-          title: 
-          `
-          <h1>${result.records[i].fields.abkuerzung}</h1>
-          <h1>${result.records[i].fields.bezeichnung_offiziell}</h1>
-          `
+          title: result.records[i].fields.abkuerzung
         });
-        console.log(marker.title)
         marker.addListener("click", () => {
           infowindow.open(map, marker);
         });
         google.maps.event.addListener(map, "click", function(event) {
           infowindow.close();
       });
+      let card = document.querySelectorAll('card-block');
+      for (let i = 0; i < card.length; i++) {
+        card.querySelector('card-title').innerHTML = `${result.records[i].fields.abkuerzung} &nbsp; ${result.records[i].fields.bezeichnung_offiziell}`
       }
+      }
+      
     })
     .catch(error => console.log('error', error));
 }
