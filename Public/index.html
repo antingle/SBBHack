@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="../map/map.css" />
+    <script src="../map/map.js"></script>
     
     <title>Parking Availability</title>
   </head>
@@ -15,8 +18,8 @@
     </div>
   
     <div style="text-align: center;">
-    <form class="searchBar" action="/ligmazipcodefinder.php" style="font-size: 0;">
-      <input type="text" placeholder="Postal Code" name="search2">
+    <form class="searchBar" action="javascript:;" onsubmit="postalSearch()" style="font-size: 0;">
+      <input type="text" id="postal" placeholder="Postal Code" name="search">
       <button type="submit"><i class="fa fa-search">Search Stations</i></button>
     </div>
 
@@ -26,7 +29,16 @@
        you can see the percent chance of a parking spot being open with our new and improved meat beat tech by matt hipp </p>
     </div>
 
+    <div id="map" style="width: 90%;"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo&callback=initMap&libraries=&v=weekly'
+      async
+    ></script>
+
     <hr>
+    
 
     <div class="card-deck"> 
       <div class="card"> 
