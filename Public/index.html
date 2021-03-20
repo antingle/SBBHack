@@ -23,11 +23,22 @@
           With our new polynomial regression, you can see the availability of a parking spot within a current time. </p>
       </div>
     
-    <div class="center">
+      <div class="menu-area">
+        <li>Radius Km
+          <ul class="dropdown">
+            <li>10km</li>
+            <li>20km</li>
+            <li>30km</li>
+            <li>40km</li>
+            <li>50km</li>
+          </ul>
+        </li>
+      </div>
+    <div class="center">      
     <form class="searchBar" action="javascript:void(0);" style="font-size: 0;">
       <button type="button" class="location-btn"><i class="fa fa-location-arrow"></i></button>
       <input type="text" id="postal" placeholder="Postal Code" name="search">
-      <button type="submit"><i class="fa fa-search fa-fw"></i>Search Stations</button>
+      <button type="submit"><i class="fa fa-search fa-fw"></i>Search Parking</button>
     </div>
 
     <hr>
@@ -51,9 +62,13 @@
   
       <div class="w3-panel w3-border w3-round-xlarge"> 
         <div class="card">
-          <h2 class="card-title">Parking lot name</h2> 
-          <p class="card-text">Parking availability</p>            
-          <a href="https://www.google.com/maps" target="_blank">Location</a>                        
+          <div class="card-block"> 
+            <h2 class="card-title">Parking lot name</h2> 
+            <p class="card-text"> 
+              Parking availability
+            </p> 
+            <a href="https://www.google.com/maps" target="_blank">Location</a>              
+          </div> 
         </div>
       </div> 
   </div> 
