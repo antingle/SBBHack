@@ -24,8 +24,9 @@ function initMap() {
   const postalButton = document.querySelector('.postal');
 
   //search stations by postal code
-  postalButton.addEventListener("click", () => {
-    let pos, postal=1200;
+  function postalSearch() {
+    let postal = document.body.getElementById("postal").innerHTML;
+    let pos;
     fetch(`https://app.zipcodebase.com/api/v1/search?apikey=f51cb250-8940-11eb-a563-317fa7c2b6b2&codes=${postal}&country=CH`, requestOptions)
     .then(response => response.json())
     .then(result => {
@@ -37,7 +38,7 @@ function initMap() {
       console.log(pos);
       findStationsNear(pos);
     });
-  });
+  }
 
   //search stations by current location
   nearButton.addEventListener("click", () => {
@@ -98,7 +99,7 @@ function findStationsNear(pos) {
         let marker = new google.maps.Marker({
           position: latLng,
           map: map,
-          icon: icons.parking,
+          icon: pr,
           title: result.records[i].fields.bezeichnung_offiziell
         });
         marker.addListener("click", () => {
@@ -111,7 +112,7 @@ function findStationsNear(pos) {
     })
     .catch(error => console.log('error', error));
 }
-
+const pr = "pr.png";
 const iconBase =
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
   const icons = {
