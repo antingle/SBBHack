@@ -12,6 +12,12 @@ h1 {
     padding: 2em;
 }
 
+.balls {
+    font-family: 'sbbthin';
+    font-size: 2em;
+    text-align: center;
+}
+
 .h1Back {
     border:1px solid grey;
     margin: auto;
