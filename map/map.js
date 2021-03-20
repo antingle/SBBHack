@@ -1,4 +1,5 @@
 const apikey = 'AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo';
+var meters = 20000;
 
 // Note: This example requires that you consent to location sharing when
 // prompted by your browser. If you see the error "The Geolocation service
@@ -13,9 +14,14 @@ function initMap() {
   });
   infoWindow = new google.maps.InfoWindow();
   const locationButton = document.createElement("button");
-  locationButton.textContent = "Pan to Current Location";
+  const nearButton = document.querySelector('.nearMe');
+  locationButton.textContent = "My Current Location";
   locationButton.classList.add("custom-map-control-button");
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  nearButton.addEventListener("click", () => {
+    let pos = { lat: 47.5474120551, lng: 7.58956279016 };
+    findStationsNear(pos);
+  });
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -26,9 +32,14 @@ function initMap() {
             lng: position.coords.longitude,
           };
           infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
-          infoWindow.open(map);
+          let marker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            title: 'Your position'
+        });
+          // infoWindow.open(map);
           map.setCenter(pos);
+          findStationsNear(pos);
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
@@ -49,4 +60,26 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       : "Error: Your browser doesn't support geolocation."
   );
   infoWindow.open(map);
+}
+
+function findStationsNear(pos) {
+  var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+  
+  fetch(`https://data.sbb.ch/api/records/1.0/search/?dataset=mobilitat&q=&rows=1000&facet=stationsbezeichnung&geofilter.distance=47.5474120551%2C7.58956279016%2C${meters}`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log(result.records);
+      for (let i = 0; i < result.records.length; i++) {
+        const coords = result.records[i].geometry.coordinates;
+        const latLng = new google.maps.LatLng(coords[1], coords[0]);
+        new google.maps.Marker({
+          position: latLng,
+          map: map,
+        });
+      }
+    })
+    .catch(error => console.log('error', error));
 }
