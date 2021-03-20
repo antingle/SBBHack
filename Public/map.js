@@ -210,17 +210,19 @@ function findStationsNear(pos) {
         )
           .then((response) => response.json())
           .then((result2) => {
-
+            card[i].innerHTML = '';
+            let h2 = document.createElement("h2");
             let p = document.createElement("p");
             let p2 = document.createElement("p");
-            card[i].childNodes[1].textContent = `${result.records[j].fields.abkuerzung} - ${result.records[j].fields.bezeichnung_offiziell}`;
+            h2.innerHTML = `${result.records[j].fields.abkuerzung} - ${result.records[j].fields.bezeichnung_offiziell}`;
+            card[i].appendChild(h2);
             p.innerHTML = `Entfernung: <b>${result2.rows[0].elements[0].distance.text}</b>`;
-            card[i].insertBefore(p, card[i].childNodes[2]);
+            card[i].appendChild(p);
             p2.innerHTML = `<p>Geschätzte Zeit: <b>${result2.rows[0].elements[0].duration.text}</b></p>`;
-            card[i].insertBefore(p2, card[i].childNodes[3]);
+            card[i].appendChild(p2);
             let p3 = document.createElement("p");
             p3.innerHTML = `<p><a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a></p>`;
-            card[i].insertBefore(p3, card[i].childNodes[5]);
+            card[i].appendChild(p3);
             card[i].hidden
           });
       }

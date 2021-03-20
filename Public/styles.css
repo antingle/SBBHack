@@ -171,9 +171,8 @@ form.searchBar input[type=text] {
   }
 
   .parking-card {
-    position: relative;
-    top: -1em;
     width: 26em;
+    height: 20em;
     padding-left: 1%;
     padding-bottom: 3%;
     padding-top: 6%;
