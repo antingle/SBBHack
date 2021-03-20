@@ -12,3 +12,34 @@ h1 {
     padding: 110px;
 }
 
+form.searchBar input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
+  
+  form.searchBar button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #f32121;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  form.searchBar button:hover {
+    background: #da120b;
+  }
+  
+  form.searchBar::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
