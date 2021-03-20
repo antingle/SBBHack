@@ -1,17 +1,23 @@
 @font-face {
     font-family: 'sbbthin';
-    src: url('../fonts/sbb-thin-webfont.woff2') format('woff2'),
-         url('../fonts/sbb-thin-webfont.woff') format('woff');
+    src: url('fonts/sbb-thin-webfont.woff2') format('woff2'),
+         url('fonts/sbb-thin-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'sbbroman';
-    src: url('../fonts/sbb-roman-webfont.woff2') format('woff2'),
-         url('../fonts/sbb-roman-webfont.woff') format('woff');
+    src: url('fonts/sbb-roman-webfont.woff2') format('woff2'),
+         url('fonts/sbb-roman-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}
+
+img {
+  width: 13%;
+  padding: 1.4em;
+  transform: translate(618%);
 }
 
 h1 {
@@ -31,14 +37,9 @@ h1 {
   padding: .5em;
 }
 
-.menu-area {
-  list-style: none;
-}
-
-.menu-area {
-  display: inline-block;
-  text-align: center;
-  margin: auto;
+.btn {
+  border-right: none;
+  border-radius: 0px;
 }
 
 form.searchBar input[type=text] {
@@ -70,6 +71,7 @@ form.searchBar input[type=text] {
   form.searchBar .location-btn {
     border-left: 1px solid grey;
     border-right: none;
+    border-left: none;
     width: 50px;
   }
 
@@ -86,15 +88,16 @@ form.searchBar input[type=text] {
 
   .w3-panel {
     margin: auto;
+    margin-bottom: 3.5em;
   }
 
-  .card-deck {
+  .parking-card-deck {
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
   }
 
-  .card {
+  .parking-card {
     position: relative;
     top: -1em;
     width: 26em;
@@ -103,11 +106,11 @@ form.searchBar input[type=text] {
     padding-top: 6%;
   }
 
-  .card-text {
+  .parking-card-text {
     font-family: 'sbbroman';
   }
 
-  .card a {
+  .parking-card a {
     color: red;
   }
 
@@ -115,3 +118,4 @@ form.searchBar input[type=text] {
     text-align: center;
   }
 
+ 
