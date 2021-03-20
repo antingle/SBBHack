@@ -5,9 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="../map/map.css" />
-    <script src="../map/map.js"></script>
+    <script defer src="../map/map.js"></script>
     
     <title>Parking Availability</title>
   </head>
@@ -15,15 +16,15 @@
   
       <h1>Parking Availability</h1>
     
-    <div style="text-align: center;">
+    <div class="center">
+
+        
     <form class="searchBar" action="javascript:void(0);" style="font-size: 0;">
+      <button class="location-btn"><i class="fa fa-location-arrow"></i></button>
       <input type="text" id="postal" placeholder="Postal Code" name="search">
-      <button type="submit"><i class="fa fa-search">Search Stations</i></button>
+      <button type="submit"><i class="fa fa-search fa-fw"></i>Search Stations</button>
     </div>
 
-    <div id=currentlocation>
-      <button class="location-btn"> Use Current Location</button>
-    </div>
 
     <hr>
     
@@ -64,7 +65,7 @@
       </div> 
   </div> 
 
-  <div id="map"></div>
+    <div id="map" style="height: 80%; width: 90%;"></div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script

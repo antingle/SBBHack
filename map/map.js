@@ -26,7 +26,7 @@ function initMap() {
   //search stations by postal code
   let form = document.body.querySelector('.searchBar');
   form.addEventListener('submit', () => {
-    let postal = form.elements[0].value;
+    let postal = form.elements['search'].value;
     
     let fourDigits = /^\d{4}$/;
 
@@ -34,7 +34,8 @@ function initMap() {
       form.elements[0].value = '';
       return;
     }
-
+    mapDiv = document.querySelector('#map');
+    mapDiv.scrollIntoView( { behavior: "smooth" } );
     let pos;
     fetch(`https://app.zipcodebase.com/api/v1/search?apikey=f51cb250-8940-11eb-a563-317fa7c2b6b2&codes=${postal}&country=CH`, requestOptions)
     .then(response => response.json())
@@ -51,6 +52,9 @@ function initMap() {
 
   //search stations by current location
   nearButton.addEventListener("click", () => {
+    mapDiv = document.querySelector('#map');
+    mapDiv.scrollIntoView( { behavior: 'smooth' } )
+
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -108,7 +112,11 @@ function findStationsNear(pos) {
         let marker = new google.maps.Marker({
           position: latLng,
           map: map,
-          icon: icons.parking,
+          animation: google.maps.Animation.DROP,
+          icon: {
+            url: '/map/parking.png',
+            scaledSize: new google.maps.Size(32,32)
+          },
           title: result.records[i].fields.bezeichnung_offiziell
         });
         marker.addListener("click", () => {
@@ -127,3 +135,4 @@ const iconBase =
   const icons = {
     parking: iconBase + "parking_lot_maps.png"
   };
+  
