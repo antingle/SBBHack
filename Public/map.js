@@ -147,12 +147,13 @@ function findStationsNear(pos) {
         google.maps.event.addListener(map, "click", function(event) {
           infowindow.close();
       });
-      let card = document.querySelectorAll('card-block');
-      for (let i = 0; i < card.length; i++) {
-        card.querySelector('card-title').innerHTML = `${result.records[i].fields.abkuerzung} &nbsp; ${result.records[i].fields.bezeichnung_offiziell}`
       }
+      let card = document.body.querySelectorAll('.card-deck .card .card-block h2');
+      for (let i = 0, j = 0; i < card.length; i++, j++) {
+        console.log(result.records[j].fields.bezeichnung_offiziell);
+        while (result.records[j].fields.bezeichnung_offiziell == result.records[j+1].fields.bezeichnung_offiziell) j++;
+        card[i].innerHTML = `${result.records[j].fields.abkuerzung} &nbsp; ${result.records[i].fields.bezeichnung_offiziell}`;
       }
-      
     })
     .catch(error => console.log('error', error));
 }
