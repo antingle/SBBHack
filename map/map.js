@@ -24,8 +24,9 @@ function initMap() {
   const postalButton = document.querySelector('.postal');
 
   //search stations by postal code
-  function postalSearch() {
-    let postal = document.body.getElementById("postal").innerHTML;
+  let form = document.body.getElementsByClassName('searchBar');
+  form.addEventListener('submit', (event) => {
+    let postal = document.body.getElementById('postal');
     let pos;
     fetch(`https://app.zipcodebase.com/api/v1/search?apikey=f51cb250-8940-11eb-a563-317fa7c2b6b2&codes=${postal}&country=CH`, requestOptions)
     .then(response => response.json())
@@ -38,7 +39,7 @@ function initMap() {
       console.log(pos);
       findStationsNear(pos);
     });
-  }
+  });
 
   //search stations by current location
   nearButton.addEventListener("click", () => {
