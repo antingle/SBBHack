@@ -5,7 +5,7 @@ var meters = 20000;
 var requestOptions = {
   method: "GET",
   redirect: "follow",
-  mode: "cors",
+  mode: "cors"
 };
 
 // Note: This example requires that you consent to location sharing when
@@ -175,7 +175,7 @@ function findStationsNear(pos) {
         //adds address and eta to marker window
         marker.addListener("click", () => {
           fetch(
-            `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`,
+            `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`,
             requestOptions
           )
             .then((response) => response.json())
@@ -214,7 +214,7 @@ function findStationsNear(pos) {
         const coords = result.records[j].geometry.coordinates;
         const destination = coords[1] + "," + coords[0];
         fetch(
-          `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`,
+          `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`,
           requestOptions
         )
           .then((response) => response.json())
@@ -234,10 +234,13 @@ function findStationsNear(pos) {
             p3.innerHTML = `<a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a>`;
             card[i].appendChild(p3);
 
-            fetch(`/model?hours=${hoursFromDate()}&name=${result.records[j].fields.bezeichnung_offiziell}`, { method: 'POST' })
+            fetch(`/model?hours=${hoursFromDate()}&name=${result.records[j].fields.bezeichnung_offiziell}&max=${result.records[j].fields.parkrail_anzahl}`, { method: 'POST' })
               .then((response) => response.text())
               .then((result) => { 
                 console.log(result)
+                if (result > 10) h4.className = 'green'
+                else if (result > 5) h4.className = 'yellow'
+                else h4.className = 'red'
               h4.innerHTML = `Estimated parking spots open: ${result}`;
               card[i].appendChild(h4); 
             })

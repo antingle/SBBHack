@@ -1,4 +1,3 @@
-const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require('constants');
 const fs = require('fs');
 
 const raw_data = fs.readFileSync('./data/data.json');
