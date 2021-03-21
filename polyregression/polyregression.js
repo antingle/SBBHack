@@ -1,7 +1,7 @@
 const tf = require('@tensorflow/tfjs');
-const data = require('./data/data.js');
+//const data = require('./data/data.js');
 
-const training_data = data.get_training_set('Sargans', 336);
+//const training_data = data.get_training_set('Sargans', 336);
 
 const a = tf.scalar(0.8360432386398315).variable();
 const b = tf.scalar(1.112913966178894).variable();
