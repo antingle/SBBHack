@@ -25,6 +25,7 @@
 h1 {
     font-family: 'sbbthin';
     text-align: center;
+    color: #000;
     padding: 1em;
     padding-top: 2em;
     font-weight: 575;
@@ -34,6 +35,7 @@ h1 {
   font-family: 'sbbthin';
   font-weight: 575;
   font-size: 1.5em;
+  color: #000;
   text-align: center;
   max-width: 32em;
   margin: auto;
@@ -157,9 +159,15 @@ form.searchBar input[type=text] {
       color:grey;
   }
 
-  .w3-panel {
+  .card-border {
     margin: auto;
+    outline: solid grey 1px;
     margin-bottom: 3.5em;
+    background: #f6f6f6;
+  }
+
+  .card-border:hover {
+    outline:solid  red 1px;
   }
 
   .parking-card-deck {
@@ -171,11 +179,11 @@ form.searchBar input[type=text] {
   .parking-card {
     width: 32em;
     height: 20em;
-    padding-left: 1%;
+    padding-left: 2em;
     padding-bottom: 3%;
     padding-top: 6%;
     font-family: 'sbbthin';
-    font-weight: 1000;
+    font-weight: bolder;
   }
 
   .parking-card-text {
@@ -192,8 +200,25 @@ form.searchBar input[type=text] {
   }
 
   .footer {
-  background-color: red;
-  text-align: center;
+    background-color: #e5e5e5;
+    text-align: left;
+    margin-top: 3.5em;
+    height: 215px;
+    font-family: 'sbbroman';
+    font-weight: 900;
+    padding-top: 2em;
+  }
+
+  .footer-pre {
+    color: #444;
+    font-family: 'sbbroman';
+  }
+
+  .footer-hr {
+    margin: 0;
+    padding: 0;
+    margin-left: 2.3em;
+    margin-right: 89.5em;
   }
 
   @media only screen and (max-width: 500px) {

@@ -180,15 +180,24 @@ function findStationsNear(pos) {
           )
             .then((response) => response.json())
             .then((result2) => {
-              infowindow = new google.maps.InfoWindow({
-                content: `
-              <h2>${result.records[i].fields.abkuerzung} - ${result.records[i].fields.bezeichnung_offiziell}</h2>
-              <p><a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a></p>
-              <p>Entfernung: <b>${result2.rows[0].elements[0].distance.text}</b></p>
-              <p>Geschätzte Zeit: <b>${result2.rows[0].elements[0].duration.text}</b></p>
-              `,
-              });
-              infowindow.open(map, marker);
+
+              //get hours from backend
+              fetch(`/model?hours=${hoursFromDate()}&name=${result.records[i].fields.bezeichnung_offiziell}`, { method: 'POST' })
+              .then((response) => response.text())
+              .then((result3) => { 
+                infowindow = new google.maps.InfoWindow({
+                  content: `
+                <h2>${result.records[i].fields.abkuerzung} - ${result.records[i].fields.bezeichnung_offiziell}</h2>
+                <p><a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a></p>
+                <p>Time to station: <b>${result2.rows[0].elements[0].duration.text}</b></p>
+                <p>Distance: <b>${result2.rows[0].elements[0].distance.text}</b></p>
+                <p>Estimated parking spots open: <b>${result3}</b></p>
+                `,
+                });
+                infowindow.open(map, marker);
+            })
+              .catch((error) => console.log("error", error));
+              
             })
             .catch((error) => console.log("error", error));
         });
@@ -218,18 +227,31 @@ function findStationsNear(pos) {
             let h4 = document.createElement("h4");
             h2.innerHTML = `${result.records[j].fields.abkuerzung} - ${result.records[j].fields.bezeichnung_offiziell}`;
             card[i].appendChild(h2);
-            p.innerHTML = `Entfernung: <b>${result2.rows[0].elements[0].distance.text}</b>`;
-            card[i].appendChild(p);
-            p2.innerHTML = `Geschätzte Zeit: <b>${result2.rows[0].elements[0].duration.text}</b>`;
+            p.innerHTML = `Distance: <b>${result2.rows[0].elements[0].distance.text}</b>`;
+            p2.innerHTML = `Time to station: <b>${result2.rows[0].elements[0].duration.text}</b>`;
             card[i].appendChild(p2);
+            card[i].appendChild(p);
             p3.innerHTML = `<a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a>`;
             card[i].appendChild(p3);
 
-            h4.innerHTML = 'Estimated Spots Open: ';
-            card[i].appendChild(h4);
+            fetch(`/model?hours=${hoursFromDate()}&name=${result.records[j].fields.bezeichnung_offiziell}`, { method: 'POST' })
+              .then((response) => response.text())
+              .then((result) => { 
+                console.log(result)
+              h4.innerHTML = `Estimated parking spots open: ${result}`;
+              card[i].appendChild(h4); 
+            })
+              .catch((error) => console.log("error", error));
           });
       }
       document.querySelector('.parking-card-deck').hidden = false;
     })
     .catch((error) => console.log("error", error));
+}
+
+function hoursFromDate() {
+  let now = new Date();
+  let beginningOfYear = new Date('January 1, 2021, 00:00:00');
+  let time = now - beginningOfYear;
+  return time / (1000 * 60 * 60);
 }
