@@ -25,6 +25,7 @@
 h1 {
     font-family: 'sbbthin';
     text-align: center;
+    color: #000;
     padding: 1em;
     padding-top: 2em;
     font-weight: 575;
@@ -34,6 +35,7 @@ h1 {
   font-family: 'sbbthin';
   font-weight: 575;
   font-size: 1.5em;
+  color: #000;
   text-align: center;
   max-width: 32em;
   margin: auto;
@@ -154,6 +156,7 @@ form.searchBar input[type=text] {
 
   hr {
       margin: 3.5em;
+
       color:grey;
   }
 
@@ -192,7 +195,7 @@ form.searchBar input[type=text] {
   }
 
   .footer {
-    background-color: lightgrey;
+    background-color: #e5e5e5;
     text-align: left;
     margin-top: 3.5em;
     height: 215px;
@@ -202,14 +205,15 @@ form.searchBar input[type=text] {
   }
 
   .footer-pre {
+    color: #444;
     font-family: 'sbbroman';
   }
 
   .footer-hr {
     margin: 0;
     padding: 0;
-    margin-left: 4.35em;
-    margin-right: 85.4em;
+    margin-left: 2.3em;
+    margin-right: 89.5em;
   }
 
   @media only screen and (max-width: 500px) {
