@@ -179,11 +179,11 @@ form.searchBar input[type=text] {
   .parking-card {
     width: 32em;
     height: 20em;
-    padding-left: 1%;
+    padding-left: 2em;
     padding-bottom: 3%;
     padding-top: 6%;
     font-family: 'sbbthin';
-    font-weight: 1000;
+    font-weight: bolder;
   }
 
   .parking-card-text {
