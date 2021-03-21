@@ -163,7 +163,7 @@ form.searchBar input[type=text] {
   }
 
   .show {
-    transition: .5s;
+    transition: .5s cubic-bezier(0.17, 0.88, 0.32, 1.28);
   }
 
   .dropdown-menu:hover .show {
@@ -242,6 +242,20 @@ form.searchBar input[type=text] {
     margin-left: 2.3em;
     margin-right: 89.5em;
   }
+
+  .red {
+    color: red;
+  }
+
+  .yellow {
+    color: #e3dc22;
+  }
+
+  .green {
+    color: #29c257;
+  }
+
+
 
   @media only screen and (max-width: 500px) {
     form.searchBar input[type=text] {
