@@ -32,6 +32,7 @@ function initMap() {
       document.querySelector(".radius-btn").textContent = `Radius (${km} km)`;
     });
   }
+ 
 
   //search stations by postal code
   let form = document.body.querySelector(".searchBar");
@@ -142,6 +143,7 @@ function findStationsNear(pos) {
   let lat = pos.lat;
   let lng = pos.lng;
   const origin = [pos.lat, pos.lng];
+  const originLatLng = new google.maps.LatLng(pos.lat, pos.lng);
   fetch(
     `https://data.sbb.ch/api/records/1.0/search/?dataset=mobilitat&q=&rows=1000&facet=stationsbezeichnung&geofilter.distance=${lat}%2C${lng}%2C${meters}`,
     requestOptions
@@ -174,13 +176,17 @@ function findStationsNear(pos) {
 
         //adds address and eta to marker window
         marker.addListener("click", () => {
-          fetch(
-            `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`,
-            requestOptions
-          )
-            .then((response) => response.json())
-            .then((result2) => {
+          
+          const matrix = new google.maps.DistanceMatrixService();
 
+          matrix.getDistanceMatrix(
+            {
+              origins: [originLatLng],
+              destinations: [latLng],
+              travelMode: google.maps.TravelMode.DRIVING,
+            },
+            function (result2, status) {
+           
               //get hours from backend
               let maxSpots = 50; //default because some stations dont have max spots
               if (result.records[i].fields.parkrail_anzahl > 0) maxSpots = result.records[i].fields.parkrail_anzahl;
@@ -191,15 +197,15 @@ function findStationsNear(pos) {
                 infowindow = new google.maps.InfoWindow({
                   content: `
                 <h2>${result.records[i].fields.abkuerzung} - ${result.records[i].fields.bezeichnung_offiziell}</h2>
-                <p><a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a></p>
+                <p><a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destinationAddresses[0]}</a></p>
                 <p>Time to station: <b>${result2.rows[0].elements[0].duration.text}</b></p>
                 <p>Distance: <b>${result2.rows[0].elements[0].distance.text}</b></p>
                 <p>Estimated parking spots open: <b>${result3}</b></p>
                 `,
                 });
                 infowindow.open(map, marker);
-            })
-              .catch((error) => console.log("error", error));
+              }
+            );
               
             })
             .catch((error) => console.log("error", error));
@@ -216,12 +222,17 @@ function findStationsNear(pos) {
 
         const coords = result.records[j].geometry.coordinates;
         const destination = coords[1] + "," + coords[0];
-        fetch(
-          `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`,
-          requestOptions
-        )
-          .then((response) => response.json())
-          .then((result2) => {
+        const latLng = new google.maps.LatLng(coords[1], coords[0]);
+        const matrix = new google.maps.DistanceMatrixService();
+
+          matrix.getDistanceMatrix(
+            {
+              origins: [originLatLng],
+              destinations: [latLng],
+              travelMode: google.maps.TravelMode.DRIVING,
+            },
+            function (result2, status) {
+              
             card[i].innerHTML = '';
             let h2 = document.createElement("h2");
             let p = document.createElement("p");
@@ -234,7 +245,7 @@ function findStationsNear(pos) {
             p2.innerHTML = `Time to station: <b>${result2.rows[0].elements[0].duration.text}</b>`;
             card[i].appendChild(p2);
             card[i].appendChild(p);
-            p3.innerHTML = `<a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a>`;
+            p3.innerHTML = `<a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destinationAddresses[0]}</a>`;
             card[i].appendChild(p3);
             let maxSpots = 50; //default because some stations dont have max spots
               if (result.records[j].fields.parkrail_anzahl > 0) maxSpots = result.records[j].fields.parkrail_anzahl;
@@ -253,7 +264,7 @@ function findStationsNear(pos) {
       }
       document.querySelector('.parking-card-deck').hidden = false;
     })
-    .catch((error) => console.log("error", error));
+   
 }
 
 function hoursFromDate() {
@@ -262,3 +273,4 @@ function hoursFromDate() {
   let time = now - beginningOfYear;
   return time / (1000 * 60 * 60);
 }
+
