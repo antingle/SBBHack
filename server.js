@@ -13,10 +13,7 @@ app.all('/', function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
    });
-   app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
+
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -36,17 +33,3 @@ app.post('/model', (req, res) => {
     console.log(hours, name);
     res.send(`${parseInt(hours)}`);
 });
-
-app.get('/google', (req, res) => {
-    let url = req.query.url;
-    request(
-      { url: url },
-      (error, response, body) => {
-        if (error || response.statusCode !== 200) {
-          return res.status(500).json({ type: 'error', message: err.message });
-        }
-  
-        res.json(JSON.parse(body));
-      }
-    )
-  });
