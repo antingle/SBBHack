@@ -196,8 +196,16 @@ form.searchBar input[type=text] {
   text-align: left;
   margin-top: 3.5em;
   height: 215px;
-  font-family: 'sbbthin';
+  font-family: 'sbbroman';
   font-weight: 900;
+  padding-top: 2em;
+  }
+
+  .footer-hr {
+    margin: 0;
+    padding: 0;
+    margin-left: 4.35em;
+    margin-right: 85.4em;
   }
 
   @media only screen and (max-width: 500px) {
