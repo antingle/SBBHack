@@ -165,7 +165,7 @@ form.searchBar input[type=text] {
   }
 
   .show {
-    transition: .5s cubic-bezier(0.17, 0.88, 0.32, 1.28);
+    transition: .5s ease-in-out;
   }
 
   .dropdown-menu:hover .show {
