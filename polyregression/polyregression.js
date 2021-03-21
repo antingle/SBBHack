@@ -7,6 +7,8 @@ const a = tf.scalar(0.8360432386398315).variable();
 const b = tf.scalar(1.112913966178894).variable();
 const c = tf.scalar(3.2782235145568848).variable();
 
+var accuracy = 0.9895888750082274;
+
 const get_training_data = () => {
     let t = [];
     let s = [];
@@ -29,15 +31,17 @@ const get_training_data = () => {
     return { t, s, t_check, s_check };
 }
 
-const get_coefficients = () => {
-    return { a: a.dataSync(), b: b.dataSync(), c: c.dataSync() };
-}
-
 const predict = x => a.mul(x.square()).add(b.mul(x)).add(c);
 
 const loss = (pred, label) => pred.sub(label).square().mean();
 
-const run = () => {
+module.exports.get_coefficients = () => {
+    return { a: a.dataSync(), b: b.dataSync(), c: c.dataSync() };
+}
+
+module.exports.accuracy = () => accuracy;
+
+module.exports.run = () => {
     const { t, s, t_check, s_check } = get_training_data();
 
     // Fit a quadratic function by learning the coefficients a, b, c.
@@ -81,15 +85,8 @@ const run = () => {
         console.log(`(${t_check[z]}, ${s_check[z]}) :: (${t_check[z]}, ${preds[z]}) :: ${((s_check[z]-preds[z]) / s_check[z]) * 100} %`);
     }
 
+    accuracy = (s_avg - pred_avg) / s_avg;
+
     console.log('--------------------')
-    console.log(`${s_avg} :: ${pred_avg} :: ${((s_avg - pred_avg) / s_avg) * 100} %`)
+    console.log(`${s_avg} :: ${pred_avg} :: ${accuracy * 100} %`)
 }
-
-run();
-
-
-
-
-
-
-
