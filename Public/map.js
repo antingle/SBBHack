@@ -214,16 +214,19 @@ function findStationsNear(pos) {
             let h2 = document.createElement("h2");
             let p = document.createElement("p");
             let p2 = document.createElement("p");
+            let p3 = document.createElement("p");
+            let h4 = document.createElement("h4");
             h2.innerHTML = `${result.records[j].fields.abkuerzung} - ${result.records[j].fields.bezeichnung_offiziell}`;
             card[i].appendChild(h2);
             p.innerHTML = `Entfernung: <b>${result2.rows[0].elements[0].distance.text}</b>`;
             card[i].appendChild(p);
-            p2.innerHTML = `<p>Geschätzte Zeit: <b>${result2.rows[0].elements[0].duration.text}</b></p>`;
+            p2.innerHTML = `Geschätzte Zeit: <b>${result2.rows[0].elements[0].duration.text}</b>`;
             card[i].appendChild(p2);
-            let p3 = document.createElement("p");
-            p3.innerHTML = `<p><a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a></p>`;
+            p3.innerHTML = `<a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a>`;
             card[i].appendChild(p3);
-            card[i].hidden
+
+            h4.innerHTML = 'Estimated Spots Open: ';
+            card[i].appendChild(h4);
           });
       }
       document.querySelector('.parking-card-deck').hidden = false;
