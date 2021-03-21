@@ -191,7 +191,9 @@ form.searchBar input[type=text] {
     text-align: center;
   }
 
-  @media only screen and (max-width: 600px) {
-    
+  @media only screen and (max-width: 500px) {
+    form.searchBar input[type=text] {
+      min-width: 17em;
+    }
   }
  
