@@ -5,7 +5,7 @@ var meters = 20000;
 var requestOptions = {
   method: "GET",
   redirect: "follow",
-  mode: "cors",
+  mode: "cors"
 };
 
 // Note: This example requires that you consent to location sharing when
@@ -175,7 +175,7 @@ function findStationsNear(pos) {
         //adds address and eta to marker window
         marker.addListener("click", () => {
           fetch(
-            `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`,
+            `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`,
             requestOptions
           )
             .then((response) => response.json())
@@ -214,7 +214,7 @@ function findStationsNear(pos) {
         const coords = result.records[j].geometry.coordinates;
         const destination = coords[1] + "," + coords[0];
         fetch(
-          `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`,
+          `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo`,
           requestOptions
         )
           .then((response) => response.json())
