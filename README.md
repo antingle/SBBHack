@@ -1,6 +1,6 @@
 # SBBHack
 
-[Link to website](https://SBBHack.ingleanthony.repl.co)
+[Link to fully functioning website!](https://SBBHack.ingleanthony.repl.co)
 
 ## Real-world-Impacts and Problems  
 
