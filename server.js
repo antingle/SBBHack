@@ -1,11 +1,19 @@
 const express = require('express');
 
-// sarts express server
-const server = express();
+// starts express app
+const app = express();
 
-server.listen(5500);
+app.listen(5500);
 
 // declares the statics folder
-server.use(express.static('public'));
+app.use(express.static('public'));
 
-server.get('/', (req, res) => { server.sendFile('/index.html') });
+app.get('/', (req, res) => { app.sendFile('/index.html') });
+
+app.post('/model', (req, res) => {
+    let hours = req.query.hours;
+    let name = req.query.name;
+    console.log(hours, name);
+    res.send(`${parseInt(hours)}`);
+});
+
