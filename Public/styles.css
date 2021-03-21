@@ -156,13 +156,18 @@ form.searchBar input[type=text] {
 
   hr {
       margin: 3.5em;
-
       color:grey;
   }
 
-  .w3-panel {
+  .card-border {
     margin: auto;
+    outline: solid grey 1px;
     margin-bottom: 3.5em;
+    background: #f6f6f6;
+  }
+
+  .card-border:hover {
+    outline:solid  red 1px;
   }
 
   .parking-card-deck {
