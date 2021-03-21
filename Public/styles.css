@@ -96,7 +96,7 @@ form.searchBar input[type=text] {
     position: absolute;
     z-index: 1;
     width: 120px;
-    top: 19.8em;
+    top: 12em;
     margin-left: -3.2em;
   }
 
@@ -128,7 +128,7 @@ form.searchBar input[type=text] {
     z-index: 1;
     width: 120px;
     bottom: 2em;
-    margin-left: -1.57em;
+    margin-left: .3em;
   }
 
   .radius-btn .radiustooltiptext:after {
@@ -175,7 +175,7 @@ form.searchBar input[type=text] {
     padding-bottom: 3%;
     padding-top: 6%;
     font-family: 'sbbthin';
-    font-weight: 575;
+    font-weight: 1000;
   }
 
   .parking-card-text {
