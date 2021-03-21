@@ -36,9 +36,10 @@ app.post('/model', (req, res) => {
     console.log(`hours: ${hours}, s_max: ${s_max}`);
 
     const { a, b } = polyregression.get_coefficients()
-    const s = 2 * a * (hours / 8760) + b;
+    console.log(`a: ${a}, b: ${b}`);
+    const s = 2 * a * ((hours) / 8760);
 
-    const s_open = s_max - s;
+    const s_open = Math.ceil(s_max - s*s_max);
     console.log(s);
 
     res.send(s_open.toString());
