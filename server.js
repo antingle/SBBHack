@@ -1,7 +1,7 @@
 const express = require('express');
 var cors = require('cors')
 
-const get_probability = require('./probability/probability.js');
+const polyregression = require('./polyregression/polyregression.js');
 
 
 // starts express app
@@ -32,10 +32,13 @@ app.get('/', (req, res, next) => { app.sendFile('/index.html') });
 
 app.post('/model', (req, res) => {
     let hours = req.query.hours;
-    let name = req.query.name;
+    // let name = req.query.name;
     let max = req.query.max;
 
-    const prob = get_probability(hours, name, max_spots);
+    const { a, b } = polyregression.get_coefficients()
+    const s = 2 * a * (hours / 8760) + b;
 
-    res.send(`${parseInt(hours)}`);
+    const s_open = s_max - s;
+
+    res.send(s_open);
 });
