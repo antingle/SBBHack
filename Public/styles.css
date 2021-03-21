@@ -148,6 +148,20 @@ form.searchBar input[type=text] {
     visibility: visible;
   }
 
+  .location-btn:hover .fa-location-arrow {
+    animation: roll 1s;
+    transform: rotate(360deg);
+  }
+
+  @keyframes roll {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   #errorDiv {
     text-align: center;
     color: red;
