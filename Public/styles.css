@@ -192,8 +192,12 @@ form.searchBar input[type=text] {
   }
 
   .footer {
-  background-color: red;
-  text-align: center;
+  background-color: lightgrey;
+  text-align: left;
+  margin-top: 3.5em;
+  height: 215px;
+  font-family: 'sbbthin';
+  font-weight: 900;
   }
 
   @media only screen and (max-width: 500px) {
