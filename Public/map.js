@@ -234,7 +234,7 @@ function findStationsNear(pos) {
             p3.innerHTML = `<a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a>`;
             card[i].appendChild(p3);
 
-            fetch(`/model?hours=${hoursFromDate()}&name=${result.records[j].fields.bezeichnung_offiziell}`, { method: 'POST' })
+            fetch(`/model?hours=${hoursFromDate()}&name=${result.records[j].fields.bezeichnung_offiziell}&max=${result.records[j].fields.parkrail_anzahl}`, { method: 'POST' })
               .then((response) => response.text())
               .then((result) => { 
                 console.log(result)
