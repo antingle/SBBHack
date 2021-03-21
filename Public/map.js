@@ -182,7 +182,7 @@ function findStationsNear(pos) {
             .then((result2) => {
 
               //get hours from backend
-              fetch(`/model?hours=${hoursFromDate()}&name=${result.records[i].fields.bezeichnung_offiziell}`, { method: 'POST' })
+              fetch(`/model?hours=${hoursFromDate()}&name=${result.records[i].fields.bezeichnung_offiziell}&max=${result.records[i].fields.parkrail_anzahl}`, { method: 'POST' })
               .then((response) => response.text())
               .then((result3) => { 
                 infowindow = new google.maps.InfoWindow({
