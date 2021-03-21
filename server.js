@@ -1,9 +1,13 @@
 const express = require('express');
+var cors = require('cors')
 
 // starts express app
 const app = express();
 
-app.listen(5500);
+//some cringe cors error I have to fix
+app.use(cors());
+
+app.listen(3000);
 
 // declares the statics folder
 app.use(express.static('public'));
@@ -16,4 +20,3 @@ app.post('/model', (req, res) => {
     console.log(hours, name);
     res.send(`${parseInt(hours)}`);
 });
-
