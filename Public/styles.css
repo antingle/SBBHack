@@ -96,8 +96,8 @@ form.searchBar input[type=text] {
     position: absolute;
     z-index: 1;
     width: 120px;
-    top: 12em;
-    margin-right: 14em;
+    top: 205px;
+    margin-left: -3.8em;
   }
 
   form.searchBar .location-btn .tooltiptext::after {
