@@ -75,7 +75,7 @@ function initMap() {
         });
         markers.push(marker);
         map.setCenter(pos);
-        map.setZoom(14 - meters / 20000);
+        map.setZoom(13.7 - meters / 20000);
         findStationsNear(pos);
       });
   });
@@ -101,7 +101,7 @@ function initMap() {
           });
           markers.push(marker);
           map.setCenter(pos);
-          map.setZoom(14 - meters / 20000);
+          map.setZoom(13 - meters / 20000);
           findStationsNear(pos);
         },
         () => {
