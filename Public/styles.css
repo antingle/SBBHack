@@ -153,6 +153,8 @@ form.searchBar input[type=text] {
     transform: rotate(360deg);
   }
 
+  
+
   @keyframes roll {
     0% {
       transform: rotate(0);
@@ -244,15 +246,18 @@ form.searchBar input[type=text] {
   }
 
   .red {
+    padding-top: 2em;
     color: red;
   }
 
   .yellow {
     color: #e3dc22;
+    padding-top: 2em;
   }
 
   .green {
     color: #29c257;
+    padding-top: 2em;
   }
 
 
