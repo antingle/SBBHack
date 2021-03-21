@@ -238,8 +238,8 @@ function findStationsNear(pos) {
               .then((response) => response.text())
               .then((result) => { 
                 console.log(result)
-                if (result > 10) h4.className = 'green'
-                else if (result > 5) h4.className = 'yellow'
+                if (result > 30) h4.className = 'green'
+                else if (result > 10) h4.className = 'yellow'
                 else h4.className = 'red'
               h4.innerHTML = `Estimated parking spots open: ${result}`;
               card[i].appendChild(h4); 
