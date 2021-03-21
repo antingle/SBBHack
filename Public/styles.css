@@ -192,13 +192,17 @@ form.searchBar input[type=text] {
   }
 
   .footer {
-  background-color: lightgrey;
-  text-align: left;
-  margin-top: 3.5em;
-  height: 215px;
-  font-family: 'sbbroman';
-  font-weight: 900;
-  padding-top: 2em;
+    background-color: lightgrey;
+    text-align: left;
+    margin-top: 3.5em;
+    height: 215px;
+    font-family: 'sbbroman';
+    font-weight: 900;
+    padding-top: 2em;
+  }
+
+  .footer-pre {
+    font-family: 'sbbroman';
   }
 
   .footer-hr {
