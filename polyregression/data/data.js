@@ -1,7 +1,27 @@
+const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require('constants');
 const fs = require('fs');
 
 const raw_data = fs.readFileSync('./data/data.json');
 const data = JSON.parse(raw_data);
+
+const does_contain = (arr, num) => {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === num) {
+            return true;
+        }        
+      }
+      return false;
+}
+
+const find_duplicates = (arr) => {
+    let new_arr = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (!does_contain(new_arr, arr[i])) {
+            new_arr.push(arr[i]);
+        }
+    }
+    return new_arr;
+}
 
 // gets the js date from the json file and returns it in hours
 const get_hours = jsdate => {
@@ -38,36 +58,27 @@ module.exports.get_training_set = (station_name, time_period) => {
         const { fields } = data[i];
         const { created, facility_name } = fields;
         const hours = get_hours(new Date(created));
-        
+
         if (facility_name == station_name && hours < time_period + 1) {
             training_data.push(hours);
         }
     }
+    training_data.sort((a, b) => a - b);
 
-    // organize the array so that common values are grouped together from lowest to highest
-    training_data = training_data.sort((a, b) => { return a - b });
-    
-    // gets the amount of tickets sold at each hour
-    let training_set = {};
-    let training_values = [];
-    training_data.forEach( i => {
-        training_set[i] = (training_set[i] || 0) + 1;
-        // formats the array into an object of hours and spots
-        training_values[i] = { hours: training_data[i], total_spots: training_set[i] };
-    });
+    let set = find_duplicates(training_data);
 
-    // removes null values to make the array continuous
-    training_values = training_values.filter( i => i != null );
-
-    return training_values;
-}
-
-// initializes an amount weights with random values
-module.exports.init_weights = (amount) => {
-    const w = [];
-    for (let i = 0; i < amount; i++) {
-        w.push(Math.random());
+    let data_set = [];
+    for (let i = 0; i < set.length; i++) {
+        console.log('set: ' + set[i]);
+        let count = 0;
+        for (let j = i; j < training_data.length; j++) {
+            console.log('data: ' + training_data[j]);
+            if (training_data[j] == set[i]) {
+                count++;  
+            }   
+        }
+        data_set.push({ hours: set[i], spots: count });
     }
     
-    return w;
+    return data_set;
 }
