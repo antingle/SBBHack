@@ -182,7 +182,10 @@ function findStationsNear(pos) {
             .then((result2) => {
 
               //get hours from backend
-              fetch(`/model?hours=${hoursFromDate()}&name=${result.records[i].fields.bezeichnung_offiziell}&max=${result.records[i].fields.parkrail_anzahl}`, { method: 'POST' })
+              let maxSpots = 50; //default because some stations dont have max spots
+              if (result.records[i].fields.parkrail_anzahl > 0) maxSpots = result.records[i].fields.parkrail_anzahl;
+
+              fetch(`/model?hours=${hoursFromDate()}&name=${result.records[i].fields.bezeichnung_offiziell}&max=${maxSpots}`, { method: 'POST' })
               .then((response) => response.text())
               .then((result3) => { 
                 infowindow = new google.maps.InfoWindow({
@@ -233,11 +236,12 @@ function findStationsNear(pos) {
             card[i].appendChild(p);
             p3.innerHTML = `<a href = "https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}">${result2.destination_addresses[0]}</a>`;
             card[i].appendChild(p3);
+            let maxSpots = 50; //default because some stations dont have max spots
+              if (result.records[j].fields.parkrail_anzahl > 0) maxSpots = result.records[j].fields.parkrail_anzahl;
 
-            fetch(`/model?hours=${hoursFromDate()}&name=${result.records[j].fields.bezeichnung_offiziell}&max=${result.records[j].fields.parkrail_anzahl}`, { method: 'POST' })
+            fetch(`/model?hours=${hoursFromDate()}&name=${result.records[j].fields.bezeichnung_offiziell}&max=${maxSpots}`, { method: 'POST' })
               .then((response) => response.text())
               .then((result) => { 
-                console.log(result)
                 if (result > 30) h4.className = 'green'
                 else if (result > 10) h4.className = 'yellow'
                 else h4.className = 'red'
