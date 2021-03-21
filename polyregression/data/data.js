@@ -69,10 +69,8 @@ module.exports.get_training_set = (station_name, time_period) => {
 
     let data_set = [];
     for (let i = 0; i < set.length; i++) {
-        console.log('set: ' + set[i]);
         let count = 0;
         for (let j = i; j < training_data.length; j++) {
-            console.log('data: ' + training_data[j]);
             if (training_data[j] == set[i]) {
                 count++;  
             }   
