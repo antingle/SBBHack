@@ -97,7 +97,7 @@ form.searchBar input[type=text] {
     z-index: 1;
     width: 120px;
     top: 12em;
-    margin-left: -3.2em;
+    margin-right: 14em;
   }
 
   form.searchBar .location-btn .tooltiptext::after {
@@ -189,6 +189,11 @@ form.searchBar input[type=text] {
 
   .center {
     text-align: center;
+  }
+
+  .footer {
+  background-color: red;
+  text-align: center;
   }
 
   @media only screen and (max-width: 500px) {
