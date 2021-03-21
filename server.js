@@ -32,7 +32,7 @@ app.get('/', (req, res, next) => { app.sendFile('/index.html') });
 app.post('/model', (req, res) => {
     let hours = req.query.hours;
     // let name = req.query.name;
-    let max = req.query.max;
+    let s_max = req.query.max;
 
     const { a, b } = polyregression.get_coefficients()
     const s = 2 * a * (hours / 8760) + b;
