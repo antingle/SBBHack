@@ -2,10 +2,11 @@ const apikey = "AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo";
 const zipkey = "f51cb250-8940-11eb-a563-317fa7c2b6b2";
 var meters = 20000;
 
+//good luck reading this code because I can't
+
 var requestOptions = {
   method: "GET",
-  redirect: "follow",
-  mode: "cors"
+  redirect: "follow"
 };
 
 // Note: This example requires that you consent to location sharing when
