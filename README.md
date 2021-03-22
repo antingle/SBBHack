@@ -20,4 +20,6 @@ We strived to keep our website user friendly by making all of the features minim
 By adding color to the website’s different features, we made it more enjoyable and easier to use.
 We also included things such as tooltips and animations to make for a better user experience.
 
-![demo image](/Public/images/demo.jpg)
+![Screenshot](/Public/images/screenshot1.jpg)
+![Screenshot](/Public/images/screenshot2.jpg)
+![Mobile Screenshot](/Public/images/screenshot3.jpg)
