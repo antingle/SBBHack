@@ -56,8 +56,6 @@ function initMap() {
         errorDiv.remove();
       }
     }
-    mapDiv = document.querySelector("#map");
-    mapDiv.scrollIntoView({ behavior: "smooth" });
     let pos;
     fetch(
       `https://app.zipcodebase.com/api/v1/search?apikey=${zipkey}&codes=${postal}&country=CH`,
@@ -65,6 +63,24 @@ function initMap() {
     )
       .then((response) => response.json())
       .then((result) => {
+
+        if (result.results[postal] == undefined) {
+          if (document.getElementById("errorDiv") == null) {
+            let errorDiv = document.createElement("div");
+            errorDiv.id = "errorDiv";
+            errorDiv.innerHTML = "Not a valid Switzerland postal code";
+            document.body.insertBefore(errorDiv, form.parentNode);
+          }
+          return;
+        } else {
+          let errorDiv = document.getElementById("errorDiv");
+          if (errorDiv) {
+            errorDiv.remove();
+          }
+            mapDiv = document.querySelector("#map");
+            mapDiv.scrollIntoView({ behavior: "smooth" });
+        }
+
         let temp = result.results[postal];
         let latitude = parseFloat(temp[0].latitude);
         let longitude = parseFloat(temp[0].longitude);
