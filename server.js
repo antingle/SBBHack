@@ -10,7 +10,7 @@ app.listen(3000);
 // declares the statics folder
 app.use(express.static('public'));
 
-app.get('/', (req, res, next) => { res.sendFile('./index.html') });
+app.get('/', (req, res) => { res.sendFile('./index.html') });
 
 app.post('/model', (req, res) => {
     let hours = req.query.hours;

@@ -1,8 +1,8 @@
-const apikey = "AIzaSyDzKz9_k_DVMDKCVayOWK2sGuX6QDJ9gOo";
-const zipkey = "f51cb250-8940-11eb-a563-317fa7c2b6b2";
-var meters = 20000;
+//Working with google maps api + all frontend javascript
 
-//good luck reading this code because I can't
+const apikey = "";
+const zipkey = "";
+var meters = 20000;
 
 var requestOptions = {
   method: "GET",
@@ -60,7 +60,7 @@ function initMap() {
     mapDiv.scrollIntoView({ behavior: "smooth" });
     let pos;
     fetch(
-      `https://app.zipcodebase.com/api/v1/search?apikey=f51cb250-8940-11eb-a563-317fa7c2b6b2&codes=${postal}&country=CH`,
+      `https://app.zipcodebase.com/api/v1/search?apikey=${zipkey}&codes=${postal}&country=CH`,
       requestOptions
     )
       .then((response) => response.json())
