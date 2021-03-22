@@ -28,6 +28,6 @@ We also included things such as tooltips and animations to make for a better use
 
   Taking on a project like this in under 36 hours was one of our biggest challenges, but pulling it off was one of our biggest successes. Each of us worked on a specialized aspect of the website and 2 hours before the deadline, we got our machine model to work and we were beyond excited. Writing and training a working machine learning model in such a short amount of time was a big obstacle for us. Working with apis that we had never worked with was another big challenge. Being pretty inexperienced in the aspect of full-stack development, we were so proud to deliver a fully functional and responsive product in under 36 hours. As a team, we cooperated well, learned and grew so much in such a short amount of time.
 
-![Screenshot](/Public/images/screenshot1.jpg)
-![Screenshot](/Public/images/screenshot2.jpg)
-![Mobile Screenshot](/Public/images/screenshot3.jpg)
+![Screenshot](/public/images/screenshot1.jpg)
+![Screenshot](/public/images/screenshot2.jpg)
+![Mobile Screenshot](/public/images/screenshot3.jpg)
