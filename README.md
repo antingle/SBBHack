@@ -3,6 +3,8 @@
 [Link to fully functioning website!](https://SBBHack.ingleanthony.repl.co)
 (If you aren't sure what postal code to try, try 3400)
 
+[YouTube Demo](https://youtu.be/Nmg_Pe9vHh4)
+
 ## Real-world-Impacts and Problems  
 
   With this webpage, it makes it very easy for the user to input their postal code and instantly acquire the closest three lots and their current parking availability. This will help prevent people driving to parking lots that don't have anymore available parking. In turn this will save time, and money for the people who are trying to use these parking lots. Coming up with a successful way to predict data will not only impact this field, but every other field as it provides us with the ability to see a little bit into the future!
@@ -22,11 +24,10 @@
 By adding color to the website’s different features, we made it more enjoyable and easier to use.
 We also included things such as tooltips and animations to make for a better user experience.
 
-![Screenshot](/Public/images/screenshot1.jpg)
-![Screenshot](/Public/images/screenshot2.jpg)
-![Mobile Screenshot](/Public/images/screenshot3.jpg)
 ## Challenges
 
   Taking on a project like this in under 36 hours was one of our biggest challenges, but pulling it off was one of our biggest successes. Each of us worked on a specialized aspect of the website and 2 hours before the deadline, we got our machine model to work and we were beyond excited. Writing and training a working machine learning model in such a short amount of time was a big obstacle for us. Working with apis that we had never worked with was another big challenge. Being pretty inexperienced in the aspect of full-stack development, we were so proud to deliver a fully functional product in under 36 hours. As a team, we cooperated well, learned and grew so much in such a short amount of time.
 
-![demo image](/Public/images/demo.jpg)
+![Screenshot](/Public/images/screenshot1.jpg)
+![Screenshot](/Public/images/screenshot2.jpg)
+![Mobile Screenshot](/Public/images/screenshot3.jpg)
