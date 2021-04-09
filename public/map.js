@@ -2,8 +2,9 @@
 
 const apikey = "";
 const zipkey = "";
-var meters = 20000;
+var meters = 20000; //standard search radius
 
+//fetch options
 var requestOptions = {
   method: "GET",
   redirect: "follow"
@@ -13,9 +14,12 @@ var requestOptions = {
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
-let map, infoWindow;
-let markers = [];
 
+
+let map, infoWindow;
+let markers = []; // appending markers to array allows markers to be cleared
+
+// initializes map and sets center
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 47.5474120551, lng: 7.58956279016 },
@@ -26,6 +30,7 @@ function initMap() {
   const nearButton = document.querySelector(".location-btn");
   const radiusButtons = document.querySelectorAll(".dropdown-menu li a");
 
+  // radius menu dropdown
   for (let i = 0; i < radiusButtons.length; i++) {
     radiusButtons[i].addEventListener("click", () => {
       let km = radiusButtons[i].textContent.match(/\d+/)[0];
@@ -35,12 +40,13 @@ function initMap() {
   }
  
 
-  //search stations by postal code
+  // search stations by postal code
   let form = document.body.querySelector(".searchBar");
   form.addEventListener("submit", () => {
     let postal = form.elements["search"].value;
     deleteMarkers();
 
+    // error check the postal code
     let fourDigits = /^\d{4}$/;
     if (fourDigits.test(postal) == false) {
       if (document.getElementById("errorDiv") == null) {
@@ -77,6 +83,7 @@ function initMap() {
           if (errorDiv) {
             errorDiv.remove();
           }
+            // smoothly redirect to map if valid postal code
             mapDiv = document.querySelector("#map");
             mapDiv.scrollIntoView({ behavior: "smooth" });
         }
@@ -131,6 +138,8 @@ function initMap() {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   });
+
+  // these functions allow markers to be removed
   function setMapOnAll(map) {
     for (let i = 0; i < markers.length; i++) {
       markers[i].setMap(map);
@@ -161,12 +170,15 @@ function findStationsNear(pos) {
   let lng = pos.lng;
   const origin = [pos.lat, pos.lng];
   const originLatLng = new google.maps.LatLng(pos.lat, pos.lng);
+
+  // fetch nearest station based on location passed in and meters set for radius
   fetch(
     `https://data.sbb.ch/api/records/1.0/search/?dataset=mobilitat&q=&rows=1000&facet=stationsbezeichnung&geofilter.distance=${lat}%2C${lng}%2C${meters}`,
     requestOptions
   )
     .then((response) => response.json())
     .then((result) => {
+
       //loops through results and creates a marker for each entry
       for (let i = 0; i < result.records.length; i++) {
         const coords = result.records[i].geometry.coordinates;
@@ -191,26 +203,29 @@ function findStationsNear(pos) {
         });
         markers.push(marker);
 
-        //adds address and eta to marker window
+        //adds address and ETA to marker window
         marker.addListener("click", () => {
           
-          const matrix = new google.maps.DistanceMatrixService();
 
+          // distance martix api allows for ETA and distance to be acquired
+          const matrix = new google.maps.DistanceMatrixService();
           matrix.getDistanceMatrix(
             {
               origins: [originLatLng],
               destinations: [latLng],
               travelMode: google.maps.TravelMode.DRIVING,
             },
-            function (result2, status) {
+            function (result2) {
            
               //get hours from backend
-              let maxSpots = 50; //default because some stations dont have max spots
+              let maxSpots = 50; //default because some stations dont have max spots (prevents NaN)
               if (result.records[i].fields.parkrail_anzahl > 0) maxSpots = result.records[i].fields.parkrail_anzahl;
 
               fetch(`/model?hours=${hoursFromDate()}&name=${result.records[i].fields.bezeichnung_offiziell}&max=${maxSpots}`, { method: 'POST' })
               .then((response) => response.text())
               .then((result3) => { 
+
+                // sets innerHTML of info markers
                 infowindow = new google.maps.InfoWindow({
                   content: `
                 <h2>${result.records[i].fields.abkuerzung} - ${result.records[i].fields.bezeichnung_offiziell}</h2>
@@ -232,7 +247,7 @@ function findStationsNear(pos) {
         });
       }
       
-      //set card texts
+      //set 3 nearest stations on cards above map
       let card = document.body.querySelectorAll(".parking-card");
       for (let i = 0, j = 0; i < card.length; i++, j++) {
         while (result.records[j].fields.bezeichnung_offiziell == result.records[j + 1].fields.bezeichnung_offiziell) j++;
@@ -267,6 +282,7 @@ function findStationsNear(pos) {
             let maxSpots = 50; //default because some stations dont have max spots
               if (result.records[j].fields.parkrail_anzahl > 0) maxSpots = result.records[j].fields.parkrail_anzahl;
 
+              // fetch backend model prediction for cards
             fetch(`/model?hours=${hoursFromDate()}&name=${result.records[j].fields.bezeichnung_offiziell}&max=${maxSpots}`, { method: 'POST' })
               .then((response) => response.text())
               .then((result) => { 
@@ -284,6 +300,7 @@ function findStationsNear(pos) {
    
 }
 
+// function for optaining current date to send to backend model
 function hoursFromDate() {
   let now = new Date();
   let beginningOfYear = new Date('January 1, 2021, 00:00:00');

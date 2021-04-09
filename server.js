@@ -1,5 +1,4 @@
 const express = require('express');
-
 const polyregression = require('./polyregression/polyregression.js');
 
 // starts express app
@@ -12,9 +11,9 @@ app.use(express.static('public'));
 
 app.get('/', (req, res) => { res.sendFile('./index.html') });
 
+// recieve frontend api fetch for predicition and get result from model
 app.post('/model', (req, res) => {
     let hours = req.query.hours;
-    // let name = req.query.name;
     let s_max = req.query.max;
 
     const { a, b } = polyregression.get_coefficients()
