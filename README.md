@@ -16,7 +16,7 @@
 - In our front-end we used basic HTML and CSS to create a modern and simplistic design.
 - We also used vanilla Javascript in the front-end to work with the Google Maps API and create a great user experience.
 - For our back-end we created a JavaScript server using Node.js and Express.
-- We used Tensorflow.js to model a binomial regression with a stochastic gradient descent minimizing function that was trained over the SBB 2020 dataset.
+- We used Tensorflow.js to create a regression model and trained it over the 2020 SBB dataset
 
 ## Usability  
 
